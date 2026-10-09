@@ -35,8 +35,10 @@ The engine combines bounded Go worker pools, spatial indexing, deterministic ray
 - **Explainable Propagation Modes**: Shared model dispatch, applicability checks, deterministic height-aware footprint LOS/NLOS classification with explicit height provenance, conservative unknown-height handling, terrain status, explicit legacy fallback, and per-response model identity keep urban NLOS path loss separate from legacy wall-event loss.
 
 - **Sector Planning**: Fast sector simulation with adjustable azimuth and beam width. The sector engine uses analytic antenna presets and does not model reflection-heavy multipath, fading, multiple-edge diffraction, or MIMO scheduling.
+
 - **2.5D Path Profiles**: Optional COG/GeoTIFF terrain, building-height obstruction, LOS/Fresnel evidence, selected single knife-edge diffraction, inspectable fidelity components, and a vertical cross section.
-- **Experiments And Surfaces**: Asynchronous reproducible parameter matrices, Pareto evidence, regular coverage rasters/isolines, and GeoTIFF/GeoJSON/CSV interchange.
+
+- **Experiments and Surfaces**: Asynchronous reproducible parameter matrices, Pareto evidence, regular coverage rasters/isolines, and GeoTIFF/GeoJSON/CSV interchange.
 
 - **Per-Cell RF Inventory**: Places, drags, duplicates, imports, validates, and persists cells with independent technology, band/channel, duplex, power, gain/loss, antenna geometry and patterns, load/reuse, PCI, and receiver assumptions.
 
@@ -67,7 +69,7 @@ The engine combines bounded Go worker pools, spatial indexing, deterministic ray
 ## Architecture & Tech Stack
 
 | Component | Technology | Purpose |
-|-----------|-----------|---------|
+|---|---|---|
 | **Backend** | Go (Golang) | Bounded RF worker execution, validation, resource controls, and in-memory R-Tree spatial queries |
 | **Frontend** | React + Leaflet | GeoJSON and canvas-backed map layers with interactive simulation controls |
 | **Data Pipeline** | Python + OSMnx | Local tower/building extraction and demand-surface enrichment |
@@ -97,7 +99,7 @@ Runtime policy bindings are generated from `policy/rf-policy.json`. After changi
 
 ![A.T.O.M focused map workspace](./docs/assets/focused-workspace.jpg)
 
-The current interface uses a compact command bar, workflow rail, overlay tool drawer, contextual result summary, independent map layers, and persistent inspectors. The map's RF controls separate the received-power surface from diagnostic rays, with explicit all/selected/hidden ray scope and a map-focus cell that is independent from Pareto solution inspection. Radio-parameter edits mark existing results as stale without submitting hidden requests, while **Run Sector**, **Evaluate Network**, and tool-specific analysis actions keep execution visible.
+The interface uses a compact command bar, workflow rail, overlay tool drawer, contextual result summary, independent map layers, and persistent inspectors. The map's RF controls separate the received-power surface from diagnostic rays, with explicit all/selected/hidden ray scope and a map-focus cell that is independent from Pareto solution inspection. Radio-parameter edits mark existing results as stale without submitting hidden requests, while **Run Sector**, **Evaluate Network**, and tool-specific analysis actions keep execution visible.
 
 ---
 
@@ -156,7 +158,7 @@ To build another geography, use the local [Dataset Pack Studio](docs/dataset-pac
 Core Lab Mode is opt-in. The default app does **not** start any 5G Core containers or require Open5GS.
 
 ```bash
-export CORE_LAB_API_KEY="$(openssl rand -hex 32)"
+export CORE_LAB_API_KEY="$(openssl rand -hex 32)"   # required — compose fails fast if unset
 docker compose -f docker-compose.yml -f docker-compose.core-lab.yml --profile core-lab up --build
 ```
 
@@ -177,7 +179,7 @@ Suggested Docker memory allocation:
 Start with the static [documentation hub](docs/index.html), then use:
 
 - [System architecture](docs/architecture.html) for runtime components, request lifecycles, spatial data, reliability controls, and model boundaries.
-- [Product compass](planning/product-compass.md) for enduring product strengths, capability horizons, feature-admission criteria, and deliberate non-goals.
+- [Future plans](planning/future_plans.md) for enduring product strengths, capability horizons, feature-admission criteria, and deliberate non-goals.
 - [Download and use](docs/download.html) for Docker, source development, Core Lab, troubleshooting, and guided workflows.
 - [Getting started](docs/getting-started.md) for the Markdown onboarding reference.
 - [REST API](docs/api.html), downloadable [OpenAPI 3.1 contract](docs/openapi.yaml), [RF algorithms](docs/algorithms.html), [Dataset Pack Studio](docs/dataset-pack-studio.html), and [model limitations](docs/modeling-limits.html) for implementation details.
